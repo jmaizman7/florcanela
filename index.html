@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Flor de Canela Café Bistró: cafés, bebidas y comida preparadas con dedicación. Más que café, son momentos especiales.">
+<meta property="og:title" content="Flor de Canela Café Bistró">
+<meta property="og:description" content="Más que café, son momentos especiales.">
+<meta property="og:image" content="img/hero.jpg">
+<meta name="theme-color" content="#2b1810">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Flor de Canela Café Bistró</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Lato:wght@400;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: landing de una columna con franjas alternas oscuras y crema, bordes ondulados entre secciones, fotos que se funden con el fondo. */
+:root {
+  --cafe-900: #2b1810;
+  --cafe-800: #3a2218;
+  --crema: #f6ead6;
+  --crema-2: #fbf4e9;
+  --canela: #c79f78;
+  --texto: #4a3328;
+  --texto-suave: #6d5547;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Caveat", "Segoe Script", "Bradley Hand", cursive;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--crema-2);
+  color: var(--texto);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 0;
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--canela); outline-offset: 3px; }
+svg { display: block; }
+.icon { width: 1.5em; height: 1.5em; flex: none; }
+.wrap { width: 100%; max-width: 1080px; margin-inline: auto; padding-inline: 20px; }
+.wave { position: absolute; left: 0; right: 0; top: -33px; width: 100%; height: 34px; z-index: 2; }
+.rama { position: absolute; color: var(--canela); opacity: .55; pointer-events: none; }
+
+/* NAV */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--cafe-900); color: var(--crema);
+  border-bottom: 1px solid rgba(246,234,214,.08);
+}
+.nav__in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; flex-wrap: wrap; }
+.nav__logo img { height: 44px; width: auto; }
+.nav__links { display: flex; gap: 28px; font-size: .9rem; }
+.nav__links a { padding-block: 6px; border-bottom: 2px solid transparent; }
+.nav__links a:first-child { border-color: var(--canela); }
+.nav__links a:hover { border-color: var(--canela); }
+.btn-line {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--canela); color: var(--crema);
+  padding: 9px 20px; border-radius: 999px; font-size: .9rem;
+}
+.btn-line .icon { width: 18px; height: 18px; }
+.btn-line:hover { background: rgba(199,159,120,.15); }
+
+/* HERO */
+.hero {
+  position: relative; background: var(--cafe-900); color: var(--crema);
+  display: grid; grid-template-columns: 1fr 1.15fr; align-items: center;
+  min-height: 430px; overflow: hidden;
+}
+.hero__copy { padding: 48px 20px 64px max(20px, calc((100vw - 1080px) / 2 + 20px)); display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2; }
+.flor-hero { width: 104px; height: 104px; color: var(--crema); }
+.hero h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1.05; margin: 6px 0 4px; text-wrap: balance; }
+.hero__sub { letter-spacing: .32em; font-size: clamp(.95rem, 2.4vw, 1.35rem); text-transform: uppercase; }
+.hero__rule { width: 120px; height: 1px; background: var(--canela); margin: 14px 0 10px; }
+.hero__tag { font-family: var(--font-script); font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.15; transform: rotate(-4deg); margin: 6px 0 22px; text-wrap: balance; }
+.btn-cream {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--crema); color: var(--cafe-900);
+  padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: .95rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.28);
+  transition: transform .2s ease;
+}
+.btn-cream:hover { transform: translateY(-2px); }
+.btn-cream .icon { width: 20px; height: 20px; }
+.hero__photo { position: relative; align-self: stretch; min-height: 340px; }
+.hero__photo img {
+  position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 30% 50%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 38%);
+  mask-image: linear-gradient(to right, transparent 0, #000 38%);
+}
+
+/* INFO */
+.info { position: relative; background: var(--crema); padding: 22px 0 30px; }
+.info .wave { color: var(--crema); }
+.info__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; position: relative; z-index: 3; }
+.info__item { display: flex; gap: 14px; align-items: flex-start; padding: 8px 22px; min-width: 0; }
+.info__item + .info__item { border-left: 1px solid rgba(74,51,40,.2); }
+.info__item .icon { width: 34px; height: 34px; color: var(--cafe-900); margin-top: 2px; }
+.info__item h3 { margin: 0 0 2px; font-size: 1.05rem; color: var(--cafe-900); }
+.info__item p { margin: 0; font-size: .9rem; color: var(--texto-suave); line-height: 1.45; overflow-wrap: anywhere; }
+
+/* BIENVENIDOS */
+.bienvenida { position: relative; background: var(--crema-2); padding: 56px 0 72px; }
+.bienvenida .wave { color: var(--crema-2); }
+.bienvenida__grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 40px; align-items: center; }
+.blob { aspect-ratio: 392 / 322; width: 100%; max-width: 100%; overflow: hidden; border-radius: 42% 58% 55% 45% / 38% 42% 58% 62%; box-shadow: 0 14px 34px rgba(43,24,16,.18); }
+.blob img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.bienvenida__kicker { font-size: 1.3rem; color: var(--texto-suave); margin: 0; }
+.bienvenida h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.9rem, 4.5vw, 2.4rem); color: var(--cafe-900); margin: 0 0 14px; line-height: 1.15; text-wrap: balance; }
+.bienvenida__lead { max-width: 52ch; margin: 0 0 26px; }
+.mv { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+.mv__col { padding-right: 24px; min-width: 0; }
+.mv__col + .mv__col { padding-left: 24px; padding-right: 0; border-left: 1px solid rgba(74,51,40,.25); }
+.mv h3 { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--cafe-900); }
+.mv h3 .icon { width: 36px; height: 36px; }
+.mv p { margin: 0; font-size: .92rem; color: var(--texto-suave); }
+
+/* SERVICIOS */
+.servicios { position: relative; background: var(--cafe-900); color: var(--crema); overflow: hidden; }
+.servicios .wave { color: var(--cafe-900); }
+.servicios__grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: stretch; }
+.servicios__copy { padding: 56px 20px 56px max(20px, calc((100vw - 1080px) / 2 + 20px)); position: relative; z-index: 2; }
+.servicios h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.9rem, 4.5vw, 2.4rem); margin: 0 0 6px; line-height: 1.15; }
+.servicios__lead { margin: 0 0 30px; font-size: 1.1rem; }
+.serv { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.serv li { text-align: center; font-size: .92rem; line-height: 1.4; }
+.serv__ico { width: 62px; height: 62px; margin: 0 auto 12px; border: 1.5px solid var(--canela); border-radius: 50%; display: grid; place-items: center; color: var(--canela); }
+.serv__ico .icon { width: 30px; height: 30px; }
+.servicios__photo { position: relative; min-height: 300px; }
+.servicios__photo img {
+  position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 60%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%);
+  mask-image: linear-gradient(to right, transparent 0, #000 30%);
+}
+.servicios__nota {
+  position: absolute; right: 16px; top: 22px; z-index: 3; text-align: center;
+  font-family: var(--font-script); font-size: 1.6rem; line-height: 1.1; transform: rotate(-9deg); max-width: 9ch; text-shadow: 0 2px 10px rgba(0,0,0,.6);
+}
+.servicios__nota .icon { width: 22px; height: 22px; margin: 4px auto 0; }
+
+/* CTA */
+.cta { position: relative; background: var(--crema); padding: 40px 0 44px; overflow: hidden; }
+.cta .wave { color: var(--crema); }
+.cta__in { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.cta__txt { font-family: var(--font-script); font-size: clamp(2rem, 6vw, 2.8rem); color: var(--cafe-900); transform: rotate(-4deg); display: flex; align-items: center; gap: 10px; }
+.cta__txt .icon { width: 28px; height: 28px; }
+.btn-dark {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--cafe-900); color: var(--crema);
+  padding: 14px 40px; border-radius: 999px; box-shadow: 0 8px 20px rgba(43,24,16,.3);
+}
+.btn-dark .icon { width: 28px; height: 28px; color: var(--canela); }
+.btn-dark small { display: block; font-size: .85rem; line-height: 1.1; }
+.btn-dark strong { display: block; font-size: 1.5rem; line-height: 1.15; letter-spacing: .03em; font-variant-numeric: tabular-nums; }
+
+/* FOOTER */
+.footer { background: var(--cafe-900); color: var(--crema); padding: 22px 0; }
+.footer__in { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer__logo img { height: 44px; width: auto; }
+.footer__lema { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.footer__lema span:not(:first-child)::before { content: "·"; margin-right: 12px; }
+.footer__social { display: flex; gap: 18px; }
+.footer__social .icon { width: 24px; height: 24px; }
+
+/* WHATSAPP */
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #1fa855; color: #fff;
+  padding: 14px 30px; border-radius: 999px; font-weight: 700;
+  box-shadow: 0 8px 20px rgba(31,168,85,.35);
+  transition: transform .2s ease;
+}
+.btn-wa:hover { transform: translateY(-2px); }
+.btn-wa .icon { width: 26px; height: 26px; }
+.wa-flotante {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #1fa855; color: #fff; display: grid; place-items: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,.35);
+  transition: transform .2s ease;
+}
+.wa-flotante:hover { transform: scale(1.06); }
+.wa-flotante .icon { width: 32px; height: 32px; }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .nav__links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero__copy { padding: 36px 20px 8px; }
+  .hero__photo { min-height: 300px; margin-top: -10px; }
+  .hero__photo img {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 35%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 35%);
+  }
+  .info__grid { grid-template-columns: 1fr; gap: 14px; }
+  .info__item { padding: 6px 0; }
+  .info__item + .info__item { border-left: 0; border-top: 1px solid rgba(74,51,40,.2); padding-top: 14px; }
+  .bienvenida__grid { grid-template-columns: 1fr; gap: 28px; }
+  .mv { grid-template-columns: 1fr; gap: 22px; }
+  .mv__col, .mv__col + .mv__col { padding: 0; border-left: 0; }
+  .servicios__grid { grid-template-columns: 1fr; }
+  .servicios__copy { padding: 48px 20px 12px; }
+  .servicios__photo { min-height: 300px; }
+  .servicios__photo img {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 30%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 30%);
+  }
+  .rama { display: none; }
+}
+@media (max-width: 520px) {
+  .btn-line { display: none; }
+  .nav__in { justify-content: center; }
+  .serv { grid-template-columns: 1fr; gap: 22px; }
+  .footer__in { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn-cream { transition: none; }
+}
+
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="flor" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">
+        <g id="petalos">
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(45 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(90 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(135 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(180 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(225 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(270 50 50)"/>
+          <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(315 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="5"/>
+      </g>
+    </symbol>
+    <symbol id="rama" viewBox="0 0 80 170">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 168C40 118 46 62 56 6"/>
+        <path d="M41 138C26 134 16 122 14 108C30 110 40 122 41 138z"/>
+        <path d="M43 112C58 108 68 96 70 82C54 84 44 96 43 112z"/>
+        <path d="M45 88C30 84 20 72 18 58C34 60 44 72 45 88z"/>
+        <path d="M49 62C63 58 72 46 74 33C59 35 50 46 49 62z"/>
+        <path d="M52 38C42 34 36 26 35 16C45 18 51 26 52 38z"/>
+      </g>
+    </symbol>
+    <symbol id="onda" viewBox="0 0 1440 34" preserveAspectRatio="none">
+      <path d="M0 34V16C180 -2 360 30 600 18S1000 -4 1200 12S1380 20 1440 10V34z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__logo" href="#inicio" aria-label="Flor de Canela Café Bistró, inicio"><img src="img/logo.png" alt="Flor de Canela Café Bistró" width="172" height="44"></a>
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn-line" href="#contacto">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1.5 1.5 1.5 3M12 3c0 1.5 1.5 1.5 1.5 3"/></svg>
+      Ven a visitarnos
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero__copy">
+      <svg class="flor-hero" aria-hidden="true"><use href="#flor"/></svg>
+      <h1>Flor de Canela</h1>
+      <div class="hero__sub">Café Bistró</div>
+      <div class="hero__rule"></div>
+      <p class="hero__tag">Más que café,<br>son momentos especiales</p>
+      <a class="btn-cream" href="#servicios">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1.5 1.5 1.5 3M12 3c0 1.5 1.5 1.5 1.5 3"/></svg>
+        Descubre nuestra propuesta
+        <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero__photo">
+      <img src="img/hero.jpg" alt="Taza de café con arte latte, croissant, canela en rama y granos de café sobre una mesa de madera">
+    </div>
+  </section>
+
+  <section class="info" id="contacto" aria-label="Datos del local">
+    <svg class="wave" aria-hidden="true"><use href="#onda"/></svg>
+    <svg class="rama" style="left:-6px;top:6px;width:84px;height:150px;transform:rotate(-8deg)" aria-hidden="true"><use href="#rama"/></svg>
+    <svg class="rama" style="right:0;top:0;width:84px;height:150px;transform:scaleX(-1)" aria-hidden="true"><use href="#rama"/></svg>
+    <div class="wrap">
+      <div class="info__grid">
+        <div class="info__item">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zm0-15.4a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2z" fill-rule="evenodd"/></svg>
+          <div><h3>Ubicación</h3><p>B/ 24 de junio entre colegio adventista y pollos Galindo</p></div>
+        </div>
+        <div class="info__item">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7" r="4.2"/><path d="M3.5 21c0-4.6 3.8-7.4 8.5-7.4s8.5 2.8 8.5 7.4z"/></svg>
+          <div><h3>Propietaria</h3><p>Yorka Tariana Aramayo Soliz</p></div>
+        </div>
+        <div class="info__item">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
+          <div><h3>Contacto</h3><p>74664695</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bienvenida" id="nosotros">
+    <svg class="wave" aria-hidden="true"><use href="#onda"/></svg>
+    <svg class="rama" style="right:-4px;bottom:18px;width:84px;height:150px;transform:scaleX(-1)" aria-hidden="true"><use href="#rama"/></svg>
+    <div class="wrap bienvenida__grid">
+      <div class="blob">
+        <img src="img/interior.jpg" alt="Interior de Flor de Canela con mesas de madera, plantas colgantes y el logo en la pared" loading="lazy">
+      </div>
+      <div>
+        <p class="bienvenida__kicker">Bienvenidos a</p>
+        <h2>Flor de Canela Café Bistró</h2>
+        <p class="bienvenida__lead">Un lugar donde el aroma del café, la calidez de nuestro servicio y el buen sabor de nuestra comida se unen para crear momentos inolvidables.</p>
+        <div class="mv">
+          <div class="mv__col">
+            <h3>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M12 12l8-8M17 4h3v3"/></svg>
+              Misión
+            </h3>
+            <p>Es ofrecer a nuestros clientes una experiencia acogedora y especial a través de cafés, bebidas y opciones de comida preparadas con dedicación y cariño.</p>
+          </div>
+          <div class="mv__col">
+            <h3>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3.4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+              Visión
+            </h3>
+            <p>Nuestra visión es que sigamos creciendo y lleguemos a ser una cafetería reconocida por su calidad, creatividad y atención.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicios" id="servicios">
+    <svg class="wave" aria-hidden="true"><use href="#onda"/></svg>
+    <div class="servicios__grid" id="menu">
+      <div class="servicios__copy">
+        <h2>Nuestros Servicios</h2>
+        <p class="servicios__lead">Bebidas, comida y una experiencia única.</p>
+        <ul class="serv">
+          <li>
+            <div class="serv__ico"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1.5 1.5 1.5 3M12 3c0 1.5 1.5 1.5 1.5 3"/></svg></div>
+            Preparación y venta de bebidas calientes y frías
+          </li>
+          <li>
+            <div class="serv__ico"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10a8 5.5 0 0 1 16 0z"/><path d="M3 13.5h18"/><path d="M4 16.5h16a3 3 0 0 1-3 3.5H7a3 3 0 0 1-3-3.5z"/></svg></div>
+            Opciones de comida deliciosa y de calidad
+          </li>
+          <li>
+            <div class="serv__ico"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.9-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.4C20 15.1 12 20 12 20z"/></svg></div>
+            Servicio de atención y experiencia al cliente
+          </li>
+        </ul>
+      </div>
+      <div class="servicios__photo">
+        <img src="img/servicios.jpg" alt="Café helado con crema, café con leche, taza de espresso y porción de cheesecake con frutilla" loading="lazy">
+        <div class="servicios__nota">Café, comida y buenos momentos
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.9-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.4C20 15.1 12 20 12 20z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-label="Contáctanos">
+    <svg class="wave" aria-hidden="true"><use href="#onda"/></svg>
+    <svg class="rama" style="left:-8px;top:4px;width:90px;height:160px;transform:rotate(-12deg)" aria-hidden="true"><use href="#rama"/></svg>
+    <svg class="rama" style="right:-4px;top:8px;width:90px;height:160px;transform:scaleX(-1) rotate(-8deg)" aria-hidden="true"><use href="#rama"/></svg>
+    <div class="wrap cta__in">
+      <div class="cta__txt">¡Te esperamos!
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.9-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.4C20 15.1 12 20 12 20z"/></svg>
+      </div>
+      <a class="btn-dark" href="tel:74664695">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>
+        <span><small>Contáctanos</small><strong>74664695</strong></span>
+      </a>
+      <a class="btn-wa" href="https://wa.me/59174664695?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Flor%20de%20Canela." target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__logo"><img src="img/logo.png" alt="Flor de Canela Café Bistró" width="172" height="44"></div>
+    <div class="footer__lema"><span>Café</span><span>Comida</span><span>Experiencias</span></div>
+    <div class="footer__social" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.5V7c0-.6.4-1 1-1h2V3h-2.5A3.9 3.9 0 0 0 10.5 7v1.5H8V12h2.5v9H14v-9h2.6l.4-3.5z"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-flotante" href="https://wa.me/59174664695?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Flor%20de%20Canela." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp al 74664695">
+  <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</body>
+</html>

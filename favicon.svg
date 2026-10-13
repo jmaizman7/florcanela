@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#2b1810"/>
+  <g fill="none" stroke="#f6ead6" stroke-width="3" stroke-linejoin="round" transform="translate(50 50) scale(.78) translate(-50 -50)">
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(45 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(90 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(135 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(180 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(225 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(270 50 50)"/>
+    <path d="M50 46C40 36 38 18 50 6C62 18 60 36 50 46z" transform="rotate(315 50 50)"/>
+    <circle cx="50" cy="50" r="5"/>
+  </g>
+</svg>
